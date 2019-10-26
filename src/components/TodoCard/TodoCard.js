@@ -19,7 +19,7 @@ const TodoCard = (props) => {
                 <TodoList todos={active.todos}/>
 
 
-                <TodoInsert todos={active.todos} addTodo={addTodo}/>
+                <TodoInsert list={active.todos} addTodo={addTodo}/>
             </div>
         </div>
     )
