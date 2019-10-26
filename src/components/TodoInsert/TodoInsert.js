@@ -3,26 +3,22 @@ import './TodoInsert.css';
 
 
 const TodoInsert = (props) => {
-    const {addTodo, todos} = props;
-    //console.log(todos); //array
+    //console.log(props);
     const insertTodo = (e) => {
-        let value = e.target.previousSibling.value;
+        const value = e.target.previousSibling.value;
         if(value) {
-            const todo = {completed:false, content:value};
-            const updatedList = todos;
-            updatedList.push(todo);
-            addTodo(updatedList);
-            e.target.previousSibling.value = '';
+            const todo = {completed:false, content:e.target.value};
+                const obj = props.todos.push(todo);
+                props.addTodo(obj);
+                e.target.previousSibling.value = '';
         }
     }
     const saveTodo = (e) => {
-        let value = e.target.value;
         if(e.key === 'Enter') {
-            if(value) {
-                const todo = {completed:false, content:value};
-                const updatedList = todos;
-                updatedList.push(todo);
-                addTodo(updatedList);
+            if(e.target.value) {
+                const todo = {completed:false, content:e.target.value};
+                const obj = props.todos.push(todo);
+                props.addTodo(obj);
                 e.target.value = '';
             }
         }
