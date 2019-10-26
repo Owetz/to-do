@@ -3,9 +3,10 @@ import './TodoList.css';
 import TodoEntry from '../TodoEntry/TodoEntry';
 
 const TodoList = (props) => {
-    const todos = props.todos.map(e => {
+    console.log(props.todos);
+    const todos = props.todos.map((e, i) => {
         const {content, completed} = e;
-        return <TodoEntry key={content} completed={completed} content={content} />;
+        return <TodoEntry key={i} completed={completed} content={content} />;
     });
     return (
         <div className="todolist">

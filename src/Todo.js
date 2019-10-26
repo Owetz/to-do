@@ -7,19 +7,20 @@ class Todo extends React.Component {
     super()
     this.state = {
       todoLists: [
-        {name:'Test1', todos:[
-          {completed:false, content:'Testcontent1'},
-          {completed:true, content:'Testcontent2'}
-        ]},
-        {name:'Test2', todos:[
-          {completed:false, content:'TestContent3'}
-        ]}
+        {listName: 'Test1',todos: [
+          {completed:false, content: 'Testcontent1'},
+          {completed:true,content: 'Testcontent2'}]},
+        {listName:'Test2',todos: [
+          {completed:true,content: 'Testcontent3'}]
+        }
       ]
     }
   }
+  
   render() {
+    const {todoLists} = this.state;
     return (
-      <TodoCard todos={this.state.todoLists} />
+      <TodoCard todos={todoLists} />
     )
   }
 }
