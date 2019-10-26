@@ -20,7 +20,7 @@
     width: 100%;
     position: absolute;
     left: 0;
-    animation: line-through .5s ease-in-out forwards;
+    animation: line-through .1s ease-in-out forwards;
 }
 
 .todo-entry.placeholder input[type="text"] {

@@ -4,13 +4,13 @@ import './TodoInsert.css';
 
 const TodoInsert = (props) => {
     //console.log(props);
-    const {addTodo, list} = props;
+    const {setList, list} = props;
     const insertTodo = (e) => {
         const value = e.target.previousSibling.value;
         if(value) {
             const todo = {completed:false, content:e.target.previousSibling.value};
             const newList = list.push(todo);
-            addTodo(newList);
+            setList(newList);
             e.target.previousSibling.value = '';
         }
     }
@@ -19,7 +19,7 @@ const TodoInsert = (props) => {
             if(e.target.value) {
                 const todo = {completed:false, content:e.target.value};
                 const newList = list.push(todo);
-                addTodo(newList);
+                setList(newList);
                 e.target.value = '';
             }
         }
