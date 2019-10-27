@@ -1,17 +1,19 @@
 import React from 'react';
 import './TodoList.css';
-import TodoEntry from '../TodoEntry/TodoEntry';
+import TodoListEntry from '../TodoListEntry/TodoListEntry';
 
 const TodoList = (props) => {
-    const {setList, todos} = props;
-    const {listName} = todos;
-    const todoElements = todos.todos.map((e, i) => {
-        const {content, completed} = e;
-        return <TodoEntry key={listName+'-'+i} completed={completed} content={content} setList={setList}/>;
-    });
+    console.log(props);
+    const {todoLists, setActiveList} = props;
+    const lists = todoLists.map(list => {
+        return <TodoListEntry 
+        key={list.id} 
+        list={list} 
+        setActiveList={setActiveList} />;
+    })
     return (
-        <div className="todolist">
-            {todoElements}
+        <div className="card-body">
+            {lists}
         </div>
     )
 }
