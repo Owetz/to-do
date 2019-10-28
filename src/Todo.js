@@ -20,15 +20,22 @@ const Todo = (props) => {
     setActiveList(newList);
   };
 
+  const updateListName = (e) => {
+    if(e.key === 'Enter') {
+      setActiveList(activeList.listName, activeList.listName = e.target.value);
+    }
+    //e.key === "Enter" ? 'Test':null;
+    //setActiveList(activeList.listName, activeList.listName = e.target.value)
+  }
+
   const findIndexOfList = (array) => {
     return todoLists.indexOf(array);
   }
 
   //Lifecycle
-  useEffect(() => {
+  useEffect((e) => {
     console.log('this happened');
     console.log(activeList);
-    console.log(list);
     localStorage.setItem('TodoLists', JSON.stringify(todoLists));
   });
   
@@ -38,9 +45,8 @@ const Todo = (props) => {
     <div className="card">
       <div className="card-header">
         { activeList ? (activeList.listName ? <h1>Todo List: {activeList.listName}</h1> :
-        <h1>Todo List: <input type="text" placeholder="Enter list name: " onKeyDown={(e) => e.key === 'Enter' ? 
-        setList(activeList.listName, activeList.listName = e.target.value):null}/></h1>) : 
-        <h1>TodoLists</h1>} <button onClick={createNewList}>Test</button>
+        <h1>Todo List: <input type="text" placeholder="Enter list name: " onKeyDown={updateListName}/></h1>) : 
+        <h1>Todo Lists</h1>} <button onClick={createNewList}>Test</button>
       </div>
       {todoLists ? (activeList ? null:<TodoList todoLists={todoLists} setActiveList={setActiveList}/>):null}
       {activeList ? <TodoCard list={activeList} findIndex={findIndexOfList} setActiveList={setActiveList}/>: null} 

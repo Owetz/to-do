@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './TodoEntry.css';
 
 const TodoEntry = (props) => {
+    console.log(props);
     const [complete, setComplete] = useState(props.completed);
     const [content, setContent] = useState(props.content);
     const [editMode, setEditMode] = useState(false);
-    
+    console.log(content);
     function inputKey(e) {
         if(e.key === 'Enter') {
             setEditMode(!editMode);
