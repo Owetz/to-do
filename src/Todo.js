@@ -10,7 +10,8 @@ const Todo = (props) => {
   //State
   const [todoLists, setTodoLists] = useState(localLists);
   const [activeList, setActiveList] = useState();
-  const [listname, setListName] = useState(activeList);
+  const [list, setList] = useState(activeList);
+  
 
   //Methods
   const createNewList = () => {
@@ -26,6 +27,8 @@ const Todo = (props) => {
   //Lifecycle
   useEffect(() => {
     console.log('this happened');
+    console.log(activeList);
+    console.log(list);
     localStorage.setItem('TodoLists', JSON.stringify(todoLists));
   });
   
@@ -36,7 +39,7 @@ const Todo = (props) => {
       <div className="card-header">
         { activeList ? (activeList.listName ? <h1>Todo List: {activeList.listName}</h1> :
         <h1>Todo List: <input type="text" placeholder="Enter list name: " onKeyDown={(e) => e.key === 'Enter' ? 
-        setListName(activeList.listName = e.target.value):null}/></h1>) : 
+        setList(activeList.listName, activeList.listName = e.target.value):null}/></h1>) : 
         <h1>TodoLists</h1>} <button onClick={createNewList}>Test</button>
       </div>
       {todoLists ? (activeList ? null:<TodoList todoLists={todoLists} setActiveList={setActiveList}/>):null}
