@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './TodoCard.css';
 import TodoEntry from '../TodoEntry/TodoEntry';
 import TodoInsert from '../TodoInsert/TodoInsert';
 
 const TodoCard = (props) => {
-    console.log(props.list);
-    const {list, setActiveList} = props;
-    const {todos} = list;
-    const todoArr = todos.map(todo => {
-        return <TodoEntry key={todos.indexOf(todo)} todo={todo}/>
+    //console.log(props);
+    const {todoLists, setTodoLists, updateTodoCompleted} = props;
+    // const {list, setActiveList} = props;
+    // const {todos} = list;
+    
+    const todoArr = todoLists.map(todo => {
+        
+        return <TodoEntry key={todoLists.indexOf(todo)} todo={todo} updateTodoCompleted={updateTodoCompleted}/>
     })
 
     return (
@@ -16,7 +19,7 @@ const TodoCard = (props) => {
             {todoArr}
 
 
-            <TodoInsert list={list} setActiveList={setActiveList}/>
+            <TodoInsert setTodoLists={setTodoLists}/>
         </div>
     )
 }
