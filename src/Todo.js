@@ -4,7 +4,7 @@ import TodoCard from './components/TodoCard/TodoCard';
 import TodoList from './components/TodoList/TodoList';
 import TodoInsert from './components/TodoInsert/TodoInsert';
 
-const Todo = (props) => {
+const Todo = () => {
   const localLists = JSON.parse(localStorage.getItem('TodoLists')) || [];
 
   //State
@@ -33,11 +33,11 @@ const Todo = (props) => {
   }
 
   //Lifecycle
-  useEffect((e) => {
+  useEffect(() => {
     console.log('this happened');
     console.log(activeList);
     localStorage.setItem('TodoLists', JSON.stringify(todoLists));
-  });
+  }, [todoLists]);
   
   
 
