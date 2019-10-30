@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare, faCheckSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons'
-import './TodoEntry.css';
+import './TodoItem.css';
 
 const TodoEntry = (props) => {
     const { todo, id, updateTodoItem, deleteTodoItem } = props;
@@ -24,7 +24,7 @@ const TodoEntry = (props) => {
 
     const inputKey = (e) => {
         if (e.key === 'Enter') {
-            todoItem.content = e.target.value;
+            todoItem.content = content;
             updatetodoItemState(todoItem);
             setEditMode(!editMode);
         }
@@ -37,6 +37,7 @@ const TodoEntry = (props) => {
 
     const updateTodoContent = (e) => {
         setContent(e.target.value);
+        todoItem.content = content;
     }
 
     return (
@@ -47,6 +48,7 @@ const TodoEntry = (props) => {
             {editMode ? (todoItem.completed ? setEditMode(!editMode): <input type="text"
                 value={content}
                 autoFocus
+                onBlur={() => setEditMode(!editMode)}
                 onKeyPress={inputKey}
                 onChange={updateTodoContent} />) :
                 <p>{content}</p>}

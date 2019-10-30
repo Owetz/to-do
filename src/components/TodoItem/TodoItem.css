@@ -32,7 +32,8 @@
     padding: 0.1rem 1rem;
     outline: none;
     border: none;
-    background:#f2fcfe;
+    /* background:#f2fcfe; */
+    background: rgba(255,255,255,.8);
 }
 
 .todo-entry p {

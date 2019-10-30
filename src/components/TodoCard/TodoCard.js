@@ -1,6 +1,6 @@
 import React from 'react';
 import './TodoCard.css';
-import TodoEntry from '../TodoEntry/TodoEntry';
+import TodoItem from '../TodoItem/TodoItem';
 import TodoInsert from '../TodoInsert/TodoInsert';
 
 const TodoCard = (props) => {
@@ -9,7 +9,7 @@ const TodoCard = (props) => {
         <>
             <div className="card-body">
                 {todoList.map(todo => {
-                    return <TodoEntry
+                    return <TodoItem
                         key={todo.id}
                         id={todo.id}
                         todo={todo}
