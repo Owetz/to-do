@@ -3,7 +3,7 @@ import './TodoList.css';
 import TodoListEntry from '../TodoListEntry/TodoListEntry';
 
 const TodoList = (props) => {
-    console.log(props);
+    //console.log(props);
     const {todoLists, setActiveList} = props;
     const lists = todoLists.map(list => {
         return <TodoListEntry 
