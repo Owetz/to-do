@@ -26,14 +26,14 @@ const Todo = () => {
     setTodoList(prevState => [...prevState, todoItem])
   }
 
-  const createId = () => {
+  const createId = () => {
     return '_' + Math.random().toString(36).substr(2, 9);
   }
 
   const deleteTodoItem = (e) => {
     const Id = e.target.parentNode.parentNode.id;
     const updatedArray = [...todoList];
-    updatedArray.splice(Id,1);
+    updatedArray.splice(Id, 1);
     setTodoList(prevState => updatedArray);
   }
 
@@ -41,12 +41,12 @@ const Todo = () => {
     <div className="card">
       <CardHeader />
 
-      <TodoCard 
-      todoList={todoList} 
-      updateTodoItem={updateTodoItem} 
-      insertTodoItem={insertTodoItem} 
-      deleteTodoItem={deleteTodoItem} 
-      createId={createId} />
+      <TodoCard
+        todoList={todoList}
+        updateTodoItem={updateTodoItem}
+        insertTodoItem={insertTodoItem}
+        deleteTodoItem={deleteTodoItem}
+        createId={createId} />
 
     </div>
   )

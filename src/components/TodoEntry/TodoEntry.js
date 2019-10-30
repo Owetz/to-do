@@ -1,13 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquare, faCheckSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 import './TodoEntry.css';
 
 const TodoEntry = (props) => {
-    const {todo, id, updateTodoItem, deleteTodoItem} = props;
+    const { todo, id, updateTodoItem, deleteTodoItem } = props;
 
     const [todoItem, setTodoItem] = useState(todo);
     useEffect(() => {
         updateTodoItem(id, todoItem);
-    },[todoItem]);
+    }, [todoItem]);
 
     const [editMode, setEditMode] = useState(false);
     const [content, setContent] = useState(todoItem.content);
@@ -16,11 +19,11 @@ const TodoEntry = (props) => {
 
     //Funktioner
     const updatetodoItemState = (todoItem) => {
-        setTodoItem(prevState => {return {...prevState, ...todoItem}});
-    } 
+        setTodoItem(prevState => { return { ...prevState, ...todoItem } });
+    }
 
     const inputKey = (e) => {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
             todoItem.content = e.target.value;
             updatetodoItemState(todoItem);
             setEditMode(!editMode);
@@ -32,25 +35,26 @@ const TodoEntry = (props) => {
         updatetodoItemState(todoItem);
     }
 
-    const updateTodoContent =(e) => {
+    const updateTodoContent = (e) => {
         setContent(e.target.value);
     }
 
     return (
         <div id={id} className={todoItem.completed ? 'todo-entry completed' : 'todo-entry'}>
-            
-            <i className={todoItem.completed ? 'far fa-check-square' : 'far fa-square'} onClick={setCompleted}></i>
-            
-            {editMode ? <input type="text" 
-            value={content} 
-            autoFocus 
-            onKeyPress={inputKey} 
-            onChange={updateTodoContent}/> : 
-            <p>{content}</p>}
+
+            <FontAwesomeIcon icon={todoItem.completed ? faCheckSquare:faSquare} color="#11FFBD" onClick={setCompleted}/>
+
+            {editMode ? (todoItem.completed ? setEditMode(!editMode): <input type="text"
+                value={content}
+                autoFocus
+                onKeyPress={inputKey}
+                onChange={updateTodoContent} />) :
+                <p>{content}</p>}
 
             <div className="todo-utils">
-                {todoItem.completed ? '' : (editMode ? '' : <i className="fas fa-pen" onClick={() => setEditMode(!editMode)}></i>)}
-                <i className="far fa-trash-alt" onClick={deleteTodoItem}></i>
+                {todoItem.completed ? '' : (editMode ? '' : <FontAwesomeIcon icon={faPen} color="#FFE000" onClick={() => setEditMode(!editMode)} />)}
+                
+                <FontAwesomeIcon icon={faTrashAlt} color="#EA384D" onClick={deleteTodoItem} />
             </div>
         </div>
     )

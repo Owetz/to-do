@@ -48,17 +48,9 @@
     justify-content: flex-end;
 }
 
-i {
+svg {
     cursor: pointer;
-    color: #11FFBD;
     margin: .5rem;
-}
-
-i.fa-trash-alt {
-    color: #EA384D;
-}
-i.fa-pen {
-    color: #FFE000;
 }
 
 

@@ -1,36 +1,40 @@
 import React from 'react';
 import './TodoInsert.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 const TodoInsert = (props) => {
-    const {insertTodoItem, createId} = props;
-    
+    const { insertTodoItem, createId } = props;
+
     const insertTodo = (e) => {
-        const value = e.target.previousSibling.value;
+        console.log('Clicked');
+        const value = e.target.parentNode.previousSibling.value;
         if (value) {
-            const newTodo = {completed: false, content:value};
+            const id = createId();
+            const newTodo = { id: id, completed: false, content: value };
             insertTodoItem(newTodo);
-            e.target.previousSibling.value = '';
+            e.target.parentNode.previousSibling.value = '';
         }
     }
 
     const saveTodo = (e) => {
-        if(e.key === 'Enter') {
+        if (e.key === 'Enter') {
             const value = e.target.value;
             if (value) {
                 const id = createId();
-                const newTodo = {id: id, completed: false, content:value};
+                const newTodo = { id: id, completed: false, content: value };
                 insertTodoItem(newTodo);
                 e.target.value = '';
             }
         }
     }
-    
+
 
     return (
         <div className="todo-entry placeholder">
             <input type="text" placeholder="Add To-Do..." onKeyPress={saveTodo} />
-            <i className="fas fa-plus" onClick={insertTodo}></i>
+            <FontAwesomeIcon icon={faPlus} color="#11FFBD" onClick={insertTodo} />
         </div>
     )
 }
