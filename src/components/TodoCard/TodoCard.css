@@ -1,0 +1,40 @@
+.card {
+    width: 80vw;
+    min-width: 200px;
+    margin: 2rem auto;
+    border-radius: 10px;
+    border:1px solid grey;
+    box-shadow: 0 10px 10px -10px #11ffbd;
+}
+
+.card-header {
+    color:white;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px 10px 0 0;
+    align-items: center;;
+    padding: 0 1rem;
+    background: #AAFFA9;
+    background: -webkit-linear-gradient(to right, #11FFBD, #AAFFA9);  
+    background: linear-gradient(to right, #11FFBD, #AAFFA9);
+}
+
+.card-header h1 {
+    display: flex;
+    align-items: center;
+}
+
+.card-header h1 input {
+    margin: 1rem;
+}
+
+.card-body {
+    border-radius: 0 0 10px 10px;
+}
+
+.listcontainer {
+    margin:0;
+    max-height: 60vh;
+    overflow-y: scroll;
+}
