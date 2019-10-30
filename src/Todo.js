@@ -10,9 +10,10 @@ const Todo = () => {
   const [todoList, setTodoList] = useState(localLists);
 
   useEffect(() => {
-    console.log(todoList);
     localStorage.setItem('TodoLists', JSON.stringify(todoList));
   }, [todoList]);
+
+
 
   const updateTodoItem = (id, todoItem) => {
     const updatedTodoList = todoList.map((item, index) => {
@@ -25,12 +26,14 @@ const Todo = () => {
     setTodoList(prevState => [...prevState, todoItem])
   }
 
+  const createId = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
+
   const deleteTodoItem = (e) => {
     const Id = e.target.parentNode.parentNode.id;
     const updatedArray = [...todoList];
     updatedArray.splice(Id,1);
-    console.log(todoList);
-    console.log(updatedArray);
     setTodoList(prevState => updatedArray);
   }
 
@@ -38,7 +41,13 @@ const Todo = () => {
     <div className="card">
       <CardHeader />
 
-      <TodoCard todoList={todoList} updateTodoItem={updateTodoItem} insertTodoItem={insertTodoItem} deleteTodoItem={deleteTodoItem}/>
+      <TodoCard 
+      todoList={todoList} 
+      updateTodoItem={updateTodoItem} 
+      insertTodoItem={insertTodoItem} 
+      deleteTodoItem={deleteTodoItem} 
+      createId={createId} />
+
     </div>
   )
 }

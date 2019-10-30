@@ -3,8 +3,8 @@ import './TodoInsert.css';
 
 
 const TodoInsert = (props) => {
-    const {insertTodoItem} = props;
-
+    const {insertTodoItem, createId} = props;
+    
     const insertTodo = (e) => {
         const value = e.target.previousSibling.value;
         if (value) {
@@ -18,7 +18,8 @@ const TodoInsert = (props) => {
         if(e.key === 'Enter') {
             const value = e.target.value;
             if (value) {
-                const newTodo = {completed: false, content:value};
+                const id = createId();
+                const newTodo = {id: id, completed: false, content:value};
                 insertTodoItem(newTodo);
                 e.target.value = '';
             }
