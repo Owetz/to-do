@@ -8,6 +8,7 @@ const TodoCard = (props) => {
 
     return (
         <div className="card-body">
+            <div className="listcontainer">
             {todoList.map(todo => {
                 return <TodoEntry 
                 key={todoList.indexOf(todo)} 
@@ -16,9 +17,10 @@ const TodoCard = (props) => {
                 updateTodoItem={updateTodoItem}
                 deleteTodoItem={deleteTodoItem} />
             })}
-
-
+            </div>
+            <div>
             <TodoInsert insertTodoItem={insertTodoItem} />
+            </div>
         </div>
     )
 }
