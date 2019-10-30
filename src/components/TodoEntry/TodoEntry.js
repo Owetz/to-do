@@ -1,43 +1,56 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './TodoEntry.css';
 
 const TodoEntry = (props) => {
-    const {todo} = props;
-    console.log(props);
+    const {todo, id, updateTodoItem, deleteTodoItem} = props;
+
+    const [todoItem, setTodoItem] = useState(todo);
+    useEffect(() => {
+        updateTodoItem(id, todoItem);
+    },[todoItem]);
+
     const [editMode, setEditMode] = useState(false);
+    const [content, setContent] = useState(todoItem.content);
 
 
-    function inputKey(e) {
+
+    //Funktioner
+    const updatetodoItemState = (todoItem) => {
+        setTodoItem(prevState => {return {...prevState, ...todoItem}});
+    } 
+
+    const inputKey = (e) => {
         if(e.key === 'Enter') {
+            todoItem.content = e.target.value;
+            updatetodoItemState(todoItem);
             setEditMode(!editMode);
         }
     }
 
-    function updateTodoContent(e) {
-        const value = e.target.value;
-        console.log(value);
-        console.log(todo.content);
+    const setCompleted = () => {
+        todoItem.completed = !todoItem.completed;
+        updatetodoItemState(todoItem);
     }
 
-    function deleteTodo(e) {
-        e.target.parentNode.parentNode.remove();
+    const updateTodoContent =(e) => {
+        setContent(e.target.value);
     }
 
     return (
-        <div className={todo.completed ? 'todo-entry completed' : 'todo-entry'}>
+        <div id={id} className={todoItem.completed ? 'todo-entry completed' : 'todo-entry'}>
             
-            <i className={todo.completed ? 'far fa-check-square' : 'far fa-square'} onClick={() => todo.updateTodoCompleted}></i>
+            <i className={todoItem.completed ? 'far fa-check-square' : 'far fa-square'} onClick={setCompleted}></i>
             
             {editMode ? <input type="text" 
-            value={todo.content} 
+            value={content} 
             autoFocus 
             onKeyPress={inputKey} 
-            onChange={updateTodoContent} /> : 
-            <p>{todo.content}</p>}
+            onChange={updateTodoContent}/> : 
+            <p>{content}</p>}
 
             <div className="todo-utils">
-                {todo.completed ? '' : <i className="fas fa-pen" onClick={() => setEditMode(!editMode)}></i>}
-                <i className="far fa-trash-alt" onClick={deleteTodo}></i>
+                {todoItem.completed ? '' : (editMode ? '' : <i className="fas fa-pen" onClick={() => setEditMode(!editMode)}></i>)}
+                <i className="far fa-trash-alt" onClick={deleteTodoItem}></i>
             </div>
         </div>
     )

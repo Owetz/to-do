@@ -3,15 +3,13 @@ import './TodoInsert.css';
 
 
 const TodoInsert = (props) => {
-    const {setTodoLists} = props;
+    const {insertTodoItem} = props;
 
     const insertTodo = (e) => {
         const value = e.target.previousSibling.value;
         if (value) {
             const newTodo = {completed: false, content:value};
-            setTodoLists(prevState => {
-                return [...prevState, newTodo]
-            })
+            insertTodoItem(newTodo);
             e.target.previousSibling.value = '';
         }
     }
@@ -21,13 +19,12 @@ const TodoInsert = (props) => {
             const value = e.target.value;
             if (value) {
                 const newTodo = {completed: false, content:value};
-                setTodoLists(prevState => {
-                    return [...prevState, newTodo]
-                })
+                insertTodoItem(newTodo);
                 e.target.value = '';
             }
         }
     }
+    
 
     return (
         <div className="todo-entry placeholder">

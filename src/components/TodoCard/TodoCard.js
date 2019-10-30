@@ -4,22 +4,21 @@ import TodoEntry from '../TodoEntry/TodoEntry';
 import TodoInsert from '../TodoInsert/TodoInsert';
 
 const TodoCard = (props) => {
-    //console.log(props);
-    const {todoLists, setTodoLists, updateTodoCompleted} = props;
-    // const {list, setActiveList} = props;
-    // const {todos} = list;
-    
-    const todoArr = todoLists.map(todo => {
-        
-        return <TodoEntry key={todoLists.indexOf(todo)} todo={todo} updateTodoCompleted={updateTodoCompleted}/>
-    })
+    const { todoList, updateTodoItem, insertTodoItem, deleteTodoItem } = props;
 
     return (
         <div className="card-body">
-            {todoArr}
+            {todoList.map(todo => {
+                return <TodoEntry 
+                key={todoList.indexOf(todo)} 
+                id={todoList.indexOf(todo)} 
+                todo={todo} 
+                updateTodoItem={updateTodoItem}
+                deleteTodoItem={deleteTodoItem} />
+            })}
 
 
-            <TodoInsert setTodoLists={setTodoLists}/>
+            <TodoInsert insertTodoItem={insertTodoItem} />
         </div>
     )
 }
