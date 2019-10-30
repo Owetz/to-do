@@ -10,7 +10,7 @@ const TodoEntry = (props) => {
     const [todoItem, setTodoItem] = useState(todo);
     useEffect(() => {
         updateTodoItem(id, todoItem);
-    }, [todoItem]);
+    },[todoItem]);
 
     const [editMode, setEditMode] = useState(false);
     const [content, setContent] = useState(todoItem.content);

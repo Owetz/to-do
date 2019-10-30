@@ -1,3 +1,14 @@
 .todo-entry {
     border-radius: 0 0 10px 10px;
 }
+
+.todo-entry.placeholder input[type="text"] {
+    height: 1.5rem;
+    font-size: 1rem;
+    width: 90%;
+    border-radius: 0.2rem;
+    padding: 0.1rem 1rem;
+    outline: none;
+    border: none;
+    background:#f2fcfe;
+}
